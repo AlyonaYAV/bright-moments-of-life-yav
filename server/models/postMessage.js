@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const postSchema = mongoose.Schema({
   title: String,
-  massage: String,
+  message: String,
   creator: String,
   tags: [String],
   selectedFile: String,
