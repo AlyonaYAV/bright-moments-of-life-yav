@@ -3,7 +3,7 @@ import jwt from'jsonwebtoken';
 const auth = async (req, res, next)=>{
   try{
     // If token is valid after 'sign in' or 'sign up'. Get the token from the Front-end
-    const token = req.headers.authorization.split(" ")[1];
+    const token = req.headers.Authorization.split(" ")[1];
     // Here we have two kinds of tokens: Google OAuth and own
     const isCustomAuth = token.length < 500;// If less than 500 it's our own
     let decodedData;
