@@ -8,19 +8,38 @@ import Icon from './Icon'
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { AUTH } from './../../constants/actionTypes'
+import { signin, signup } from './../../actions/auth';
+
+const initialState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
+}
 
 const Auth = ()=>{
   const styles = useStyles();
   // Show password or hide
   const [showPassword, setShowPassword] = useState(false);
-  const [isSignUp, setIsSignUp ] =  useState(false);; 
+  const [isSignUp, setIsSignUp ] =  useState(false);
+  const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
   const history = useHistory();
+
   const handleSubmit = (e)=>{
-    
+    e.preventDefault();
+    if(isSignUp){// Sign up
+      dispatch(signup(formData, history));
+    }else{// Sign in
+      dispatch(signin(formData, history));
+    }
+    //console.log("State ",formData);
   };
   const handleChange = (e)=>{
-    
+    setFormData((state)=>{
+      return { ...state, [e.target.name]: e.target.value };
+    });
   };
   const handleShowPassword = ()=>{
     setShowPassword( passwordState => !passwordState);
@@ -28,7 +47,7 @@ const Auth = ()=>{
   // Switch between 'Sign In' and 'Sign Up'
   const switchMode = ()=>{
     setIsSignUp( formModeState => !formModeState );
-    // handleShowPassword(false);
+    setShowPassword(false);
   };
   const googleSuccess = async (res)=>{
     const result = res?.profileObj;// undefined
@@ -69,7 +88,7 @@ const Auth = ()=>{
                     handleChange={ handleChange }
                   />
                   <Input
-                    name="LastName"
+                    name="lastName"
                     label="Last name"
                     half
                     handleChange={ handleChange }
