@@ -7,10 +7,10 @@ const Likes = ({ user, post })=>{
     if(likesLength > 0){
       return post.likes.find( like => like === (user?.result?.googleId || user?.result?._id ) )
       ? (<>
-          <ThumbUpAltIcon  fontSize="smail" />&nbsp;{ likesLength > 2 ? `You and ${likesLength - 1} others` : `${likesLength} likes${likesLength > 1 ? 's' : ''}`}
+          <ThumbUpAltIcon  fontSize="small" />&nbsp;{ likesLength > 2 ? `You and ${likesLength - 1} others` : `${likesLength} likes${likesLength > 1 ? 's' : ''}`}
         </>)
       : (<>
-          <ThumbUpAltIcon  fontSize="smail" />&nbsp;{ likesLength } { likesLength === 1 ? 'Like' : 'Likes'}
+          <ThumbUpAltIcon  fontSize="small" />&nbsp;{ likesLength } { likesLength === 1 ? 'Like' : 'Likes'}
       </>)
     }
     return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>
