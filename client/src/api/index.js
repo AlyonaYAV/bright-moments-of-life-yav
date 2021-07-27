@@ -3,29 +3,31 @@ import axios from 'axios';
 const API = axios.create({ baseURL: 'http://localhost:5000' });
 
 API.interceptors.request.use( req => {
-  if (localStorage.getItem('profile')){
+  if(localStorage.getItem('profile')){
     req.headers.Authorization = `Bearer ${ JSON.parse(localStorage.getItem('profile')).token }`;
   }
-  // Interceptors must return Request to make all the future Requests below
+  //Interceptors must return Request to make all the future Requests below
   return req;
 });
 
-/*// Add a 401 respose intercepptor
+/*// Add a 401 response interceptor
 API.interceptors.response.use(function (response) {
   return response;
-}, function (error){
+}, function (error) {
   if (401 === error.response.status) {
-    //console.log("Error ",error.status);
+    //console.log("Error ",error.response);
     return error.response;
-    // handle error: inform user, go to login, etc
-  }else {
+      // handle error: inform user, go to login, etc
+  } else {
     return Promise.reject(error);
   }
   //return error;
 });*/
 
-// Posts
+//Posts
 export const fetchPosts = () => API.get('/posts');
+
+export const fetchPostBySearch = (searchQuery) => API.get(`/posts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
 
 export const createPost = (newPost) => API.post('/posts', newPost);
 
@@ -35,7 +37,7 @@ export const deletePost = (id) => API.delete(`/posts/${id}`);
 
 export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 
-// Auth
+//Auth
 export const signIn = (formData)=> API.post('/users/signin', formData);
 
 export const signUp = (formData)=> API.post('/users/signup', formData);
