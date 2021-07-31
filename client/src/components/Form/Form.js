@@ -53,7 +53,7 @@ if(!user?.result?.name){
   )
 }
 return (
-  <Paper className={ classes.paper }>
+  <Paper className={ classes.paper } elevation={6}>
     <form autoComplete="off" noValidate className={ `${classes.root} ${classes.form}` } onSubmit={ handleSubmit }>
       <Typography variant="h6">{currentId ? 'Editing' : 'Creating'} an Event of life</Typography>
       <TextField
