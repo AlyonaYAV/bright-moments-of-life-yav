@@ -1,5 +1,6 @@
 import {
   FETCH_ALL_POST,
+  FETCH_POST,
   CREATE_POST,
   UPDATE_POST,
   DELETE_POST,
@@ -28,6 +29,7 @@ const posts = (state = initialState, action)=>{
     case UPDATE_POST : return { ...state, posts: state.posts.map( post => post._id === action.payload._id ? action.payload : post) }; 
     case LIKE_POST : return { ...state, posts: state.posts.map( post => post._id === action.payload.postUpdated._id ? action.payload.postUpdated : post) };
     case DELETE_POST : return { ...state, posts: state.posts.filter( post => post._id !== action.payload ? true : false) };
+    case FETCH_POST: return { ...state, post: action.payload };
     case FETCH_BY_SEARCH: return { ...state, posts: action.payload };
     default: return state;
   }
