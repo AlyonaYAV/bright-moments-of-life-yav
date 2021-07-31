@@ -48,5 +48,18 @@ export default makeStyles(() =>({
         padding: '0 16px 8px 16px',
         display: 'flex',
         justifyContent: 'space-between'
+    },
+    cardActionsTop: {
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+        height: '40%',
+        padding: '0 16px 8px 16px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        '&:hover': {
+            cursor: 'pointer'
+        },
+        zIndex: '1000'
     }
 }));
