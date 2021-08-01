@@ -19,7 +19,6 @@ const Post = ({ post, setCurrentId })=>{
   const openPost = (e) =>{
     history.push(`/posts/${post._id}`);
   }
-
     return (
       <Card className={ classes.card } raised elevation={6}>
         <ButtonBase className={ classes.cardActionsTop } onClick={ openPost }></ButtonBase>
@@ -29,7 +28,7 @@ const Post = ({ post, setCurrentId })=>{
           title={ post.title }
         />
         <div className={ classes.overlay }>
-          <Typography variant="h6">{ post.name }</Typography>
+          <Typography variant="h6" className={ classes.name }>{ post.name }</Typography>
           <Typography variant="body2">{ moment(post.createdAt).fromNow() }</Typography>
         </div>
         { (user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
